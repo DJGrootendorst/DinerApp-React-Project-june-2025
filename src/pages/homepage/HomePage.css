@@ -1,0 +1,30 @@
+.home-content {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+.introduction {
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 100%;
+    max-width: 500px;
+    padding: 1rem;
+}
+
+.preview {
+    display: flex;
+    width: 50%;
+    max-width: 500px;
+    justify-content: center;
+    align-items: center;
+    border-radius: 1rem;
+}
+
+.preview img {
+    max-width: 100%;
+    max-height: 300px; /* bepaal zelf wat prettig oogt */
+    height: auto;
+    object-fit: contain;
+    border-radius: 0.5rem;
+}

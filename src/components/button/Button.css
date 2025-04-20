@@ -1,0 +1,20 @@
+/* Algemene stijlen voor knoppen */
+.button {
+    border-radius: 38px;
+    width: 135px;
+    height: 37px;
+    color: var(--white);
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+/* Stijl voor registreren knop */
+.button-register {
+    background-color: var(--earthyellow);
+}
+
+/* Stijl voor inloggen knop */
+.button-login {
+    background-color: var(--jade);
+}

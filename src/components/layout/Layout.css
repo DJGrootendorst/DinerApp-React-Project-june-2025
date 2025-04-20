@@ -1,0 +1,70 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Prosto+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Ysabeau+Office:ital,wght@0,1..1000;1,1..1000&display=swap');
+
+
+button, a {
+    font-family: "Prosto One", sans-serif;
+    font-weight: normal;
+    color: var(--white)
+}
+
+h1 {
+    font-family: "Ysabeau Office", sans-serif;
+    font-weight: bold;
+    color: var(--smokeyblack);
+}
+
+h2, h3, p, li, input {
+    font-family: "Ysabeau Office", sans-serif;
+    font-weight: normal;
+    color: var(--smokeyblack);
+}
+
+.layout {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.layout-header {
+    background: linear-gradient(90deg, var(--jade), var(--mindaro));
+    padding: 1rem 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.home-header {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 10px;
+}
+
+.logo {
+    height: 40px;
+    border-radius: 2px;
+}
+
+.layout-main {
+    flex-grow: 1;
+    padding: 2rem;
+    background-color: #f1f1f1;
+}
+
+.layout-footer {
+    background: linear-gradient(90deg, var(--mindaro), var(--jade));
+    padding: 1rem 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    font-size: 0.9rem;
+}
+
+.footer-center a,
+.footer-right a {
+    text-decoration: none;
+
+}
+

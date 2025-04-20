@@ -1,0 +1,21 @@
+
+/*////////////////////////
+    Table of Contents
+    1. Reusables
+    2. Global styling
+
+/* --------------- 1 Reusables ----------------------- */
+
+:root {
+  --jade: #00A878;         /* Donkergroen */
+  --mindaro: #D8F1A0;      /* Lichtgroen */
+  --earthyellow: #F3C178;  /* Donkergeel */
+  --tomato: #FE5E41;       /* Donkeroranje */
+  --smokeyblack: #0B0500;  /* Donkerzwart */
+  --light-grey: #F3F6F9;     /* Lichtgrijs (voor achtergrond van projecten) */
+  --white: #FFFFFF;        /* Wit */
+  --grey: #EDEDED;         /* Grijs */
+
+}
+
+/* --------------- 2 Global styling ----------------------- */
