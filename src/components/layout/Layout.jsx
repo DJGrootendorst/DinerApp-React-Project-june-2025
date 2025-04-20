@@ -1,9 +1,11 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, {useState} from 'react';
+import { Link, NavLink } from 'react-router-dom';
 import './Layout.css';
 import logo from '../../assets/logo.png';
 
 function Layout({ children, headerContent }) {
+    const [isLoggedIn] = useState(true);
+
     return (
         <div className="layout">
             <header className="layout-header">
@@ -11,6 +13,74 @@ function Layout({ children, headerContent }) {
                     <img src={logo} alt="Logo" className="logo"/>
                 </Link>
                 {headerContent}
+
+                {/* Alleen navigatie tonen als je bent ingelogd */}
+                {isLoggedIn ? (
+                    <nav className="navigation">
+                        <ul>
+                            <li>
+                                <NavLink
+                                    to="/app/DinerMatch"
+                                    className={({ isActive }) => isActive ? 'active-menu-link' : 'default-menu-link'}
+                                >
+                                    DinerMatch
+                                </NavLink>
+                            </li>
+                            <li>
+                                <NavLink
+                                    to="/app/Search"
+                                    className={({ isActive }) => isActive ? 'active-menu-link' : 'default-menu-link'}
+                                >
+                                    Zoeken
+                                </NavLink>
+                            </li>
+                            <li>
+                                <NavLink
+                                    to="/app/MyRecipes"
+                                    className={({ isActive }) => isActive ? 'active-menu-link' : 'default-menu-link'}
+                                >
+                                    Mijn Recepten
+                                </NavLink>
+                            </li>
+                            <li>
+                                <NavLink
+                                    to="/app/MyRecipes"
+                                    className={({ isActive }) => isActive ? 'active-menu-link' : 'default-menu-link'}
+                                >
+                                    {/*Hier zit een actie achter zoals bij Banana Security*/}
+                                    Uitloggen
+                                </NavLink>
+                            </li>
+                        </ul>
+                    </nav>
+                ) : <nav>
+                    <ul>
+                        <li>
+                            <NavLink
+                                to="/"
+                                className={({isActive}) => isActive ? 'active-menu-link' : 'default-menu-link'}
+                            >
+                                HOME
+                            </NavLink>
+                        </li>
+                        <li>
+                            <NavLink
+                                to="/Login"
+                                className={({isActive}) => isActive ? 'active-menu-link' : 'default-menu-link'}
+                            >
+                                inlooggen
+                            </NavLink>
+                        </li>
+                        <li>
+                            <NavLink
+                                to="/Register"
+                                className={({isActive}) => isActive ? 'active-menu-link' : 'default-menu-link'}
+                            >
+                                Registren
+                            </NavLink>
+                        </li>
+                    </ul>
+                </nav>}
             </header>
 
             <main className="layout-main">
@@ -27,4 +97,3 @@ function Layout({ children, headerContent }) {
 }
 
 export default Layout;
-

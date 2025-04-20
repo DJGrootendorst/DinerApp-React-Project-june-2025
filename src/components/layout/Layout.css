@@ -47,6 +47,11 @@ h2, h3, p, li, input {
     border-radius: 2px;
 }
 
+.navigation {
+    display: flex;
+    flex-direction: row;
+}
+
 .layout-main {
     flex-grow: 1;
     padding: 2rem;
