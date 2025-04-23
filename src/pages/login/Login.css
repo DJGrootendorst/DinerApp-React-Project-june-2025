@@ -1,0 +1,61 @@
+.login-main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 60vh;
+}
+
+.form-login {
+    display: flex;
+    justify-content: center;         /* Centreert horizontaal */
+    align-items: center;             /* Centreert verticaal */
+    height: 40vh;                   /* Zorgt ervoor dat de container de volledige hoogte van het scherm vult */
+    width: 25vw;
+    background: linear-gradient(-135deg,
+    var(--mindaro) 10%,
+    var(--jade) 50%,
+    var(--mindaro) 90%
+    );
+    padding: 2rem;
+    border-radius: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.form-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;            /* Centreert de inhoud horizontaal */
+    justify-content: center;        /* Centreert de inhoud verticaal binnen de form-content */
+    text-align: center;             /* Zorgt ervoor dat de tekst gecentreerd is binnen de elementen */
+    width: 100%;                    /* Zorgt ervoor dat de content niet breder wordt dan de container */
+    max-width: 400px;               /* Maximaliseer de breedte zodat het niet te breed is */
+    padding: 2rem;
+    box-sizing: border-box;         /* Zorgt ervoor dat de padding binnen de breedte van de container valt */
+}
+
+.form-input {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    width: 100%;
+}
+
+.form-input input {
+    padding: 0.75rem;
+    border: 2px solid var(--earthyellow);
+    border-radius: 12px;
+    background-color: transparent;
+
+}
+
+.form-input input:focus {
+    outline: none; /* Verwijder de standaard browser outline */
+    border-color: var(--earthyellow); /* Behoud je gewenste kleur */
+    background-color: transparent; /* Geen extra achtergrondkleur */
+}
+
+.form-input input {
+    font-family: "Ysabeau Office", sans-serif;
+    font-weight: normal;
+}
+

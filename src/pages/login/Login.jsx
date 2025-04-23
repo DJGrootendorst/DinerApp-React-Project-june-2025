@@ -2,6 +2,7 @@ import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import Layout from '../../components/layout/Layout.jsx';
 import Button from '../../components/button/Button.jsx';
+import './Login.css';
 
 function Login({ toggleIsLoggedIn }) {
     const navigate = useNavigate();
@@ -18,13 +19,34 @@ function Login({ toggleIsLoggedIn }) {
                 <Button text="Registreren" buttonClass="button-register" onClick={() => navigate('/register')} />
             </div>
         }>
-            <div>
-                <h1>DinerApp Login</h1>
-                <p>Welkom bij het inloggen</p>
-                <Link to="/Register">Registreren</Link>
-                <br/>
-                <Button text="Inloggen" buttonClass="button-login" onClick={handleInlogClick}>Inloggen</Button>
-            </div>
+            <main className="login-main">
+                <div className="form-login">
+                    <div className="form-content">
+                        <h1>INLOGGEN</h1>
+                        <p>Heb je nog geen account?<Link to="/Register"> Registreren</Link></p>
+
+                        <form className="form-input">
+                            <input
+                                type="email"
+                                id="email-field"
+                                name="e-mail"
+                                placeholder="E-mailadres"
+                                required
+                            />
+                            <input
+                                type="password"
+                                id="password-field"
+                                name="password"
+                                placeholder="Wachtwoord"
+                                required
+                            />
+                        </form>
+
+                        <br/>
+                        <Button text="Inloggen" buttonClass="button-login" onClick={handleInlogClick}>Inloggen</Button>
+                    </div>
+                </div>
+            </main>
         </Layout>
     );
 }

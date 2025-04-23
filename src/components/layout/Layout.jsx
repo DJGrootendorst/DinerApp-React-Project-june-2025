@@ -12,7 +12,6 @@ function Layout({ children, headerContent }) {
                 <Link to="/">
                     <img src={logo} alt="Logo" className="logo"/>
                 </Link>
-                {headerContent}
 
                 {/* Alleen navigatie tonen als je bent ingelogd */}
                 {isLoggedIn ? (
@@ -47,8 +46,8 @@ function Layout({ children, headerContent }) {
                                     to="/app/MyRecipes"
                                     className={({ isActive }) => isActive ? 'active-menu-link' : 'default-menu-link'}
                                 >
-                                    {/*Hier zit een actie achter zoals bij Banana Security*/}
-                                    Uitloggen
+                                    {/*Hier komt een uitloggen actie achter zoals bij Banana Security*/}
+
                                 </NavLink>
                             </li>
                         </ul>
@@ -81,6 +80,9 @@ function Layout({ children, headerContent }) {
                         </li>
                     </ul>
                 </nav>}
+
+                {headerContent}
+
             </header>
 
             <main className="layout-main">
