@@ -1,0 +1,48 @@
+.recipe-selection {
+    display: flex;
+    flex-direction: column;
+    background: linear-gradient(180deg, var(--jade), var(--mindaro));
+    width: 20%;
+    border-radius: 0.5rem;
+    padding: 20px;
+}
+
+.recipe-selection-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.vraaggroep {
+    border: none;
+    border-radius: 6px;
+    padding: 10px;
+}
+
+.vraag-titel {
+    font-size: 18px;
+    font-weight: bold;
+    margin: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    user-select: none;
+}
+
+.dropdown-pijl {
+    cursor: pointer;
+    user-select: none;
+}
+
+.opties-lijst {
+    margin-top: 10px;
+    padding-left: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+.checkbox-label {
+    margin: 5px 0;
+    font-size: 16px;
+}

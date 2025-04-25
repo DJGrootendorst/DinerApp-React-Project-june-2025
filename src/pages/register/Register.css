@@ -50,7 +50,7 @@
 
 .form-input input:focus {
     outline: none; /* Verwijder de standaard browser outline */
-    border-color: var(--earthyellow); /* Behoud je gewenste kleur */
+    border-color: var(--earthyellow); /* Behoud de gewenste kleur */
     background-color: transparent; /* Geen extra achtergrondkleur */
 }
 
