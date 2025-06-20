@@ -1,15 +1,31 @@
-import React from 'react';
+import React, { useState, useContext } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import Layout from '../../components/layout/Layout.jsx';
 import Button from '../../components/button/Button.jsx';
 import './Login.css';
+import { AuthContext } from '../../context/AuthContext.jsx';
 
-function Login({ toggleIsLoggedIn }) {
+function Login() {
     const navigate = useNavigate();
+    const { login } = useContext(AuthContext);
 
-    const handleInlogClick = () => {
-        toggleIsLoggedIn(true);         // Zet ingelogd op true
-        navigate('/app/DinerMatch');    // Ga naar beschermde pagina
+    const [formState, setFormState] = useState({
+        username: '',
+        password: '',
+    });
+
+    const handleChange = (e) => {
+        setFormState({
+            ...formState,
+            [e.target.name]: e.target.value,
+        });
+    };
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+
+        login(formState);
+
     };
 
     return (
@@ -23,27 +39,32 @@ function Login({ toggleIsLoggedIn }) {
                 <div className="form-login">
                     <div className="form-content">
                         <h1>INLOGGEN</h1>
-                        <p>Heb je nog geen account?<Link to="/Register"> Registreren</Link></p>
+                        <p>Heb je nog geen account? <Link to="/Register">Registreren</Link></p>
 
-                        <form className="form-input">
+                        <form className="form-input" onSubmit={handleSubmit}>
                             <input
-                                type="email"
-                                id="email-field"
-                                name="e-mail"
-                                placeholder="E-mailadres"
+                                type="text"
+                                name="username"
+                                placeholder="Username"
+                                value={formState.username}
+                                onChange={handleChange}
                                 required
                             />
                             <input
                                 type="password"
-                                id="password-field"
                                 name="password"
                                 placeholder="Wachtwoord"
+                                value={formState.password}
+                                onChange={handleChange}
                                 required
                             />
+                            <br />
+                            <Button
+                                text="Inloggen"
+                                buttonClass="button-login"
+                                type="submit"
+                            />
                         </form>
-
-                        <br/>
-                        <Button text="Inloggen" buttonClass="button-login" onClick={handleInlogClick}>Inloggen</Button>
                     </div>
                 </div>
             </main>

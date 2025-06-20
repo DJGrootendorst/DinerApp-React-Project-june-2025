@@ -32,6 +32,9 @@ const RecipeSelection = ({ introText }) => {
     const [antwoorden, setAntwoorden] = useState({});
     const [openSections, setOpenSections] = useState({});
 
+
+
+
     const handleChange = (vraag, optie) => {
         setAntwoorden(prev => {
             const huidige = prev[vraag] || [];
@@ -51,6 +54,7 @@ const RecipeSelection = ({ introText }) => {
 
     return (
         <div className="recipe-selection">
+            {console.log(antwoorden, openSections)}
             <p>{introText}</p>
             <form className="recipe-selection-form">
                 {questions.map((groep, index) => (

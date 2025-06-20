@@ -1,13 +1,46 @@
-import React from 'react';
-import {Link, useNavigate} from 'react-router-dom';
+import React, { useState, useContext } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import Layout from '../../components/layout/Layout.jsx';
 import Button from '../../components/button/Button.jsx';
 import './Register.css';
+import axios from 'axios';
+import { AuthContext } from '../../context/AuthContext.jsx';
 
 function Register() {
     const navigate = useNavigate();
+    const { register } = useContext(AuthContext); // optioneel automatisch inloggen
 
-    return(
+    const [formState, setFormState] = useState({
+        username: '',
+        email: '',
+        confirmEmail: '',
+        password: '',
+        confirmPassword: '',
+    });
+
+    const handleChange = (e) => {
+        setFormState({
+            ...formState,
+            [e.target.name]: e.target.value,
+        });
+    };
+
+    async function handleRegister(e) {
+        e.preventDefault();
+
+        // simpele validatie
+        if (formState.email !== formState.confirmEmail) {
+            alert('E-mailadressen komen niet overeen');
+            return;
+        }
+        if (formState.password !== formState.confirmPassword) {
+            alert('Wachtwoorden komen niet overeen');
+            return;
+        }
+        register(formState)
+    }
+
+    return (
         <Layout headerContent={
             <div className="home-header">
                 <Button text="Inloggen" buttonClass="button-login" onClick={() => navigate('/login')} />
@@ -18,47 +51,56 @@ function Register() {
                 <div className="form-register">
                     <div className="form-content">
                         <h1>REGISTREREN</h1>
-                        <p>Heb je al een account?<Link to="/Login"> Inloggen</Link></p>
+                        <p>Heb je al een account? <Link to="/Login"> Inloggen</Link></p>
 
-                        <form className="form-input">
+                        <form className="form-input" onSubmit={handleRegister}>
                             <input
-                                type="email"
-                                id="email-field"
-                                name="e-mail"
-                                placeholder="E-mailadres"
+                                type="text"
+                                name="username"
+                                placeholder="Gebruikersnaam"
+                                value={formState.username}
+                                onChange={handleChange}
                                 required
                             />
                             <input
                                 type="email"
-                                id="confirm-email-field"
-                                name="confirm-e-mail"
-                                placeholder="Bevestig je e-mailadres"
+                                name="email"
+                                placeholder="E-mailadres"
+                                value={formState.email}
+                                onChange={handleChange}
+                                required
+                            />
+                            <input
+                                type="email"
+                                name="confirmEmail"
+                                placeholder="Bevestig e-mailadres"
+                                value={formState.confirmEmail}
+                                onChange={handleChange}
                                 required
                             />
                             <input
                                 type="password"
-                                id="password-field"
                                 name="password"
                                 placeholder="Wachtwoord"
+                                value={formState.password}
+                                onChange={handleChange}
                                 required
                             />
                             <input
                                 type="password"
-                                id="confirm-password-field"
-                                name="confirm-password"
-                                placeholder="Bevestig je wachtwoord"
+                                name="confirmPassword"
+                                placeholder="Bevestig wachtwoord"
+                                value={formState.confirmPassword}
+                                onChange={handleChange}
                                 required
                             />
+                            <br/>
+                            <Button
+                                text="Registreren"
+                                buttonClass="button-register"
+                                type="submit"
+                            />
                         </form>
-
-                        <br/>
-
-                        <Button
-                            text="Registreren"
-                            buttonClass="button-register"
-                            onClick={() => console.log("Registratieknop geklikt")}
-                        />
-
                     </div>
                 </div>
             </main>
