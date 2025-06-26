@@ -10,6 +10,7 @@ import Login from './pages/login/Login.jsx';
 import DinerMatch from './pages/dinermatch/DinerMatch.jsx';
 import Search from './pages/search/Search.jsx';
 import MyRecipes from './pages/myrecipes/MyRecipes.jsx';
+import RecipeDetails from './pages/recipedetails/RecipeDetails.jsx';
 import TermsOfUse from './pages/legal/TermsOfUse.jsx';
 import PrivacyPolicy from './pages/legal/PrivacyPolicy.jsx';
 
@@ -31,6 +32,7 @@ function App() {
                         <Route path="/app/DinerMatch" element={<DinerMatch />} />
                         <Route path="/app/Search" element={<Search />} />
                         <Route path="/app/MyRecipes" element={<MyRecipes />} />
+                        <Route path="app/recept/:id" element={<RecipeDetails />} />
                     </>
                 ) : (
                     <Route path="/app/*" element={<Navigate to="/Login" />} />
