@@ -1,65 +1,77 @@
-import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { useParams, useNavigate } from 'react-router-dom';
 import Layout from '../../components/layout/Layout.jsx';
 import axios from 'axios';
+
+
 
 const API_KEY = 'aac25b9051c945c6ac35df61975b9dbf';
 
 function RecipeDetails() {
     const { id } = useParams();
-    const [recept, setRecept] = useState(null);
-    const [loading, setLoading] = useState(true);
+    const navigate = useNavigate();
+    const [recipe, setRecipe] = useState(null);
+    const [favorite, setFavorite] = useState(false);
 
     useEffect(() => {
-        async function fetchRecept() {
-            try {
-                const response = await axios.get(
-                    `https://api.spoonacular.com/recipes/${id}/information`,
-                    {
-                        params: { apiKey: API_KEY },
-                    }
-                );
-                setRecept(response.data);
-            } catch (error) {
-                console.error('Fout bij ophalen van recept:', error);
-            } finally {
-                setLoading(false);
-            }
-        }
-
-        fetchRecept();
+        fetchRecipe();
+        checkIfFavorite();
     }, [id]);
 
-    if (loading) {
-        return <Layout><p>Bezig met laden...</p></Layout>;
+    async function fetchRecipe() {
+        try {
+            const response = await axios.get(`https://api.spoonacular.com/recipes/${id}/information`, {
+                params: { apiKey: API_KEY }
+            });
+            setRecipe(response.data);
+        } catch (error) {
+            console.error('Fout bij ophalen recept:', error);
+        }
     }
 
-    if (!recept) {
-        return <Layout><p>Recept niet gevonden.</p></Layout>;
+    function checkIfFavorite() {
+        const stored = localStorage.getItem('favorites');
+        if (stored) {
+            const favorites = JSON.parse(stored);
+            const found = favorites.find(r => r.id === parseInt(id));
+            setFavorite(!!found);
+        }
     }
+
+    function toggleFavorite() {
+        const stored = localStorage.getItem('favorites');
+        const favorites = stored ? JSON.parse(stored) : [];
+
+        const exists = favorites.find(r => r.id === recipe.id);
+        let updatedFavorites;
+
+        if (exists) {
+            updatedFavorites = favorites.filter(r => r.id !== recipe.id);
+            setFavorite(false);
+            localStorage.setItem('favorites', JSON.stringify(updatedFavorites));
+            navigate(-1);
+        } else {
+            updatedFavorites = [...favorites, { id: recipe.id, title: recipe.title, image: recipe.image }];
+            setFavorite(true);
+            localStorage.setItem('favorites', JSON.stringify(updatedFavorites));
+        }
+    }
+
+    if (!recipe) return <p>Bezig met laden...</p>;
 
     return (
         <Layout>
-            <h1>{recept.title}</h1>
-            <img
-                src={recept.image}
-                alt={recept.title}
-                style={{ maxWidth: '400px', height: 'auto' }}
-            />
+            <div>
+                <h1>{recipe.title}</h1>
+                <img src={recipe.image} alt={recipe.title}/>
 
-            <h2>Ingrediënten</h2>
-            <ul>
-                {recept.extendedIngredients.map(ingredient => (
-                    <li key={ingredient.id}>{ingredient.original}</li>
-                ))}
-            </ul>
+                <button onClick={toggleFavorite}>
+                    {favorite ? '❤️ Verwijder uit favorieten' : '🤍 Voeg toe aan favorieten'}
+                </button>
 
-            <h2>Instructies</h2>
-            {recept.instructions ? (
-                <p dangerouslySetInnerHTML={{ __html: recept.instructions }} />
-            ) : (
-                <p>Geen instructies beschikbaar.</p>
-            )}
+                <h3>Beschrijving:</h3>
+                <p dangerouslySetInnerHTML={{__html: recipe.summary}}></p>
+            </div>
         </Layout>
     );
 }

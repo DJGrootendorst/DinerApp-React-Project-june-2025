@@ -1,7 +1,6 @@
 import React, { useContext } from 'react';
 import './App.css';
 import { Routes, Route, Navigate } from 'react-router-dom';
-
 import { AuthContext } from './context/AuthContext.jsx';
 
 import HomePage from './pages/homepage/HomePage.jsx';

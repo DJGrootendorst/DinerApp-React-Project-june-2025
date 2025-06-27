@@ -1,83 +1,114 @@
 import React, { useState } from 'react';
+import axios from 'axios';
 import './RecipeSelection.css';
+
+const API_KEY = 'aac25b9051c945c6ac35df61975b9dbf';
 
 const questions = [
     {
-        vraag: "Welk type maaltijd zoek je?",
-        opties: ["Ontbijt", "Lunch", "Diner", "Snacks"]
+        question: "Welk type keuken wilt u koken?",
+        opties: ["Italian", "Greek", "Mexican", "Chinese", "Japanese", "Indian", "American", "French"]
     },
     {
-        vraag: "Hoeveel tijd heb je om te koken?",
-        opties: ["Minder dan 15 minuten", "15-30 minuten", "Meer dan 30 minuten"]
+        question: "Welk type keuken wilt u niet?",
+        opties: ["Italian", "Greek", "Mexican", "Chinese", "Japanese", "Indian", "American", "French"]
     },
     {
-        vraag: "Wat is jouw voedingsdoel?",
-        opties: ["Gewichtsverlies", "Spieropbouw", "Gezond eten", "Verbeteren van de spijsvertering"]
+        question: "Welk type dieet?",
+        opties: ["Gluten Free", "Ketogenic", "Vegetarian", "Vegan", "Pescetarian", "Paleo"]
     },
     {
-        vraag: "Volg je een specifiek dieet?",
-        opties: ["Vegan", "Vegetarisch", "Pescatarian", "Keto", "Paleo", "Glutenvrij"]
+        question: "Met welke intoleranties wilt u rekening houden?",
+        opties: ["Dairy", "Egg", "Gluten", "Grain", "Peanut", "Seafood"]
     },
     {
-        vraag: "Hoeveel calorieën mag de maaltijd hebben?",
-        opties: ["Laag", "Gemiddeld", "Hoog"]
-    },
-    {
-        vraag: "Heb je allergieën of intoleranties?",
-        opties: ["Melk", "Eieren", "Gluten", "Pinda’s", "Soja", "Noten", "Vis", "Schaal- en schelpdieren", "Sulfieten"]
+        question: "Welk type gerecht wilt u bereiden?",
+        opties: ["Main Course", "Side Dish", "Dessert", "Appetizer", "Bread", "Soup", "Snack"]
     }
 ];
 
-const RecipeSelection = ({ introText }) => {
-    const [antwoorden, setAntwoorden] = useState({});
+const RecipeSelection = ({ introText, onResults, mode }) => {
+    const [answers, setAnswers] = useState({});
     const [openSections, setOpenSections] = useState({});
+    const [loading, setLoading] = useState(false);
 
-
-
-
-    const handleChange = (vraag, optie) => {
-        setAntwoorden(prev => {
-            const huidige = prev[vraag] || [];
-            const nieuw = huidige.includes(optie)
-                ? huidige.filter(item => item !== optie)
-                : [...huidige, optie];
-            return { ...prev, [vraag]: nieuw };
+    const handleChange = (question, option) => {
+        setAnswers(prev => {
+            const current = prev[question] || [];
+            const updated = current.includes(option)
+                ? current.filter(item => item !== option)
+                : [...current, option];
+            return { ...prev, [question]: updated };
         });
     };
 
-    const toggleSection = (vraag) => {
+    const toggleSection = (question) => {
         setOpenSections(prev => ({
             ...prev,
-            [vraag]: !prev[vraag]
+            [question]: !prev[question]
         }));
+    };
+
+    const handleSearch = async () => {
+        if (mode !== 'api') return;
+
+        setLoading(true);
+
+        const params = {
+            apiKey: API_KEY,
+            number: 10
+        };
+
+        if (answers["Welk type keuken wilt u koken?"])
+            params.cuisine = answers["Welk type keuken wilt u koken?"].join(',');
+
+        if (answers["Welk type keuken wilt u niet?"])
+            params.excludeCuisine = answers["Welk type keuken wilt u niet?"].join(',');
+
+        if (answers["Welk type dieet?"])
+            params.diet = answers["Welk type dieet?"].join(',');
+
+        if (answers["Met welke intoleranties wilt u rekening houden?"])
+            params.intolerances = answers["Met welke intoleranties wilt u rekening houden?"].join(',');
+
+        if (answers["Welk type gerecht wilt u bereiden?"])
+            params.type = answers["Welk type gerecht wilt u bereiden?"][0] || ''; // Max 1 gerecht type
+
+        try {
+            const response = await axios.get('https://api.spoonacular.com/recipes/complexSearch', {
+                params
+            });
+            onResults(response.data.results || []);
+        } catch (error) {
+            console.error("Fout bij het ophalen van recepten:", error);
+            onResults([]);
+        } finally {
+            setLoading(false);
+        }
     };
 
     return (
         <div className="recipe-selection">
-            {console.log(antwoorden, openSections)}
             <p>{introText}</p>
             <form className="recipe-selection-form">
-                {questions.map((groep, index) => (
+                {questions.map((group, index) => (
                     <div className="vraaggroep" key={index}>
-                        <h3
-                            className="vraag-titel"
-                            onClick={() => toggleSection(groep.vraag)}
-                        >
-                            <span>{groep.vraag}</span>
-                            <span className="dropdown-pijl">{openSections[groep.vraag] ? '▲' : '▼'}</span>
+                        <h3 className="vraag-titel" onClick={() => toggleSection(group.question)}>
+                            <span>{group.question}</span>
+                            <span className="dropdown-pijl">{openSections[group.question] ? '▲' : '▼'}</span>
                         </h3>
 
-                        {openSections[groep.vraag] && (
+                        {openSections[group.question] && (
                             <div className="opties-lijst">
-                                {groep.opties.map((optie, i) => (
+                                {group.opties.map((option, i) => (
                                     <label key={i} className="checkbox-label">
                                         <input
                                             type="checkbox"
-                                            value={optie}
-                                            checked={antwoorden[groep.vraag]?.includes(optie) || false}
-                                            onChange={() => handleChange(groep.vraag, optie)}
+                                            value={option}
+                                            checked={answers[group.question]?.includes(option) || false}
+                                            onChange={() => handleChange(group.question, option)}
                                         />
-                                        {optie}
+                                        {option}
                                     </label>
                                 ))}
                             </div>
@@ -85,6 +116,10 @@ const RecipeSelection = ({ introText }) => {
                     </div>
                 ))}
             </form>
+
+            <button onClick={handleSearch} disabled={loading}>
+                {loading ? "Zoeken..." : "Zoek recepten"}
+            </button>
         </div>
     );
 };

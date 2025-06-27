@@ -1,26 +1,43 @@
-import React, {useState} from 'react';
-import {Link} from 'react-router-dom';
+import React, { useState } from 'react';
 import Layout from '../../components/layout/Layout.jsx';
 import RecipeSelection from '../../components/recipeselection/RecipeSelection.jsx';
-import './DinerMatch.css'
+import { Link } from 'react-router-dom';
+import './DinerMatch.css';
 
 function DinerMatch() {
+    const [recipes, setRecipes] = useState([]);
 
-    const [state, setState] = useState([]);
-
-    async function getRecipes(){
-
-    }
     return (
         <Layout>
-            <div className='test'>
-                <div className="dinermatch-container">
-                    <RecipeSelection introText="Beantwoord de vragen en ontdek jouw maaltijdmatch!"/>
+            <div className="dinermatch-container">
+                <RecipeSelection
+                    introText="Beantwoord de vragen en ontdek jouw maaltijdmatch!"
+                    onResults={setRecipes}
+                    mode="api"
+                />
+
+                <div className="recepten-lijst">
+                    {recipes.length > 0 ? (
+                        recipes.map((recipe) => (
+                            <div key={recipe.id} className="recept-kaart">
+                                <img
+                                    src={recipe.image}
+                                    alt={recipe.title}
+                                    className="recept-afbeelding"
+                                />
+                                <h3>{recipe.title}</h3>
+                                <Link to={`/app/recept/${recipe.id}`}>Bekijk recept</Link>
+                            </div>
+                        ))
+                    ) : (
+                        <p>Vul de vragen in en klik op zoeken.</p>
+                    )}
                 </div>
-                <h1>hoi</h1>
             </div>
         </Layout>
-    )
+    );
 }
 
 export default DinerMatch;
+
+
