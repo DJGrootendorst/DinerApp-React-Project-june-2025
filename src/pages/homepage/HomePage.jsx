@@ -1,28 +1,36 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Button from '../../components/button/Button.jsx';
 import preview from '../../assets/preview.png';
 import Layout from '../../components/layout/Layout.jsx';
+import { AuthContext } from '../../context/AuthContext.jsx';
 import '../../pages/homepage/HomePage.css';
 
 function HomePage() {
     const navigate = useNavigate();
+    const { isAuth, logout } = useContext(AuthContext);
 
-    const handleRegisterClick = () => {
-        navigate('/Register');
+    const handleRegisterClick = () => navigate('/Register');
+    const handleLoginClick = () => navigate('/Login');
+    const handleLogoutClick = () => {
+        logout();
     };
 
-    const handleLoginClick = () => {
-        navigate('/Login');
-    }
-
-    return(
-        <Layout headerContent={
-            <div className="home-header">
-                <Button text="Inloggen" buttonClass="button-login" onClick={handleLoginClick} />
-                <Button text="Registreren" buttonClass="button-register" onClick={handleRegisterClick} />
-            </div>
-        }>
+    return (
+        <Layout
+            headerContent={
+                <div className="home-header">
+                    {isAuth ? (
+                        <Button text="Uitloggen" buttonClass="button-logout" onClick={handleLogoutClick} />
+                    ) : (
+                        <>
+                            <Button text="Inloggen" buttonClass="button-login" onClick={handleLoginClick} />
+                            <Button text="Registreren" buttonClass="button-register" onClick={handleRegisterClick} />
+                        </>
+                    )}
+                </div>
+            }
+        >
             <div className="home-content">
                 <article className="introduction">
                     <h2>Welkom bij DinerApp!</h2>

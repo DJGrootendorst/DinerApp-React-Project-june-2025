@@ -3,8 +3,6 @@ import { useParams, useNavigate } from 'react-router-dom';
 import Layout from '../../components/layout/Layout.jsx';
 import axios from 'axios';
 
-
-
 const API_KEY = 'aac25b9051c945c6ac35df61975b9dbf';
 
 function RecipeDetails() {

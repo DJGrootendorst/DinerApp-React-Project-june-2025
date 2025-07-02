@@ -1,11 +1,12 @@
-import React, { useState } from 'react';
+import React, { useContext } from 'react';
 import Layout from '../../components/layout/Layout.jsx';
 import RecipeSelection from '../../components/recipeselection/RecipeSelection.jsx';
+import { RecipeContext } from '../../context/RecipeContext.jsx';
 import { Link } from 'react-router-dom';
 import './DinerMatch.css';
 
 function DinerMatch() {
-    const [recipes, setRecipes] = useState([]);
+    const { recipes, setRecipes } = useContext(RecipeContext);
 
     return (
         <Layout>
@@ -39,5 +40,4 @@ function DinerMatch() {
 }
 
 export default DinerMatch;
-
 

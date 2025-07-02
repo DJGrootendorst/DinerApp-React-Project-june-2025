@@ -67,7 +67,7 @@ function Layout({ children, headerContent }) {
                                 to="/Login"
                                 className={({isActive}) => isActive ? 'active-menu-link' : 'default-menu-link'}
                             >
-                                inlooggen
+                                Inloggen
                             </NavLink>
                         </li>
                         <li>
