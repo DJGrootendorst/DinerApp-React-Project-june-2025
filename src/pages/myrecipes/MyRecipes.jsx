@@ -2,10 +2,12 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Layout from '../../components/layout/Layout.jsx';
 import RecipeSelection from '../../components/recipeselection/RecipeSelection.jsx';
+import { useSearchParams } from 'react-router-dom';
 
 function MyRecipes() {
     const [favorites, setFavorites] = useState([]);
     const [filteredRecipes, setFilteredRecipes] = useState([]);
+    const [searchParams, setSearchParams] = useSearchParams();
 
     useEffect(() => {
         const stored = localStorage.getItem('favorites');
@@ -50,12 +52,14 @@ function MyRecipes() {
                 <RecipeSelection
                     introText="Gebruik de vraagfunctie voor jouw recepten!"
                     onResults={handleFilterResults}
+                    searchParams={searchParams}
+                    setSearchParams={setSearchParams}
                     mode="local"
                 />
             </div>
 
             {filteredRecipes.length === 0 ? (
-                <p>Geen recepten gevonden die aan jouw criteria voldoen.</p>
+                <p>Voeg eerst favoriete recepten toe bij DinerMatch of bij Zoeken</p>
             ) : (
                 <div className="recepten-lijst">
                     {filteredRecipes.map(recipe => (

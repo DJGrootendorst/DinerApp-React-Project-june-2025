@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
 import Layout from '../../components/layout/Layout.jsx';
+import { Link, useSearchParams } from 'react-router-dom';
 import axios from 'axios';
 
 const API_KEY = 'aac25b9051c945c6ac35df61975b9dbf';
@@ -8,12 +8,26 @@ const API_KEY = 'aac25b9051c945c6ac35df61975b9dbf';
 function Search() {
     const [searchText, setSearchText] = useState('');
     const [suggestions, setSuggestions] = useState([]);
+    const [searchParams, setSearchParams] = useSearchParams();
 
+    // Zoekterm ophalen uit URL bij laden van de pagina
+    useEffect(() => {
+        const savedQuery = searchParams.get('q');
+        if (savedQuery) {
+            setSearchText(savedQuery);
+        }
+    }, []);
+
+
+    // Suggesties ophalen zodra de zoekterm verandert
     useEffect(() => {
         if (searchText.length > 1) {
             fetchSuggestions();
+            // Zet zoekterm direct in de URL
+            setSearchParams({q: searchText });
         } else {
             setSuggestions([]);
+            setSearchParams({});
         }
     }, [searchText]);
 
