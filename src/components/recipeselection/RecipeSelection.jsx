@@ -111,7 +111,10 @@ const RecipeSelection = ({ introText, onResults, searchParams, setSearchParams, 
     };
 
     const handleSearch = async () => {
-        if (mode !== 'api') return;
+        if (mode === 'local') {
+            onResults(answers);
+            return;
+        }
 
         setLoading(true);
 

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Layout from '../../components/layout/Layout.jsx';
+import FavoriteButton from '../../components/favoritebutton/FavoriteButton.jsx';
 import RecipeSelection from '../../components/recipeselection/RecipeSelection.jsx';
 import { Link, useSearchParams } from 'react-router-dom';
 import './DinerMatch.css';
@@ -54,6 +55,7 @@ function DinerMatch() {
                                     className="recept-afbeelding"
                                 />
                                 <h3>{recipe.title}</h3>
+                                <FavoriteButton recipe={recipe} />
                                 <Link to={`/app/recept/${recipe.id}`}>Bekijk recept</Link>
                             </div>
                         ))

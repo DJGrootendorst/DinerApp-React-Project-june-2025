@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Layout from '../../components/layout/Layout.jsx';
+import FavoriteButton from '../../components/favoritebutton/FavoriteButton.jsx';
 import { Link, useSearchParams } from 'react-router-dom';
 import axios from 'axios';
 
@@ -17,7 +18,6 @@ function Search() {
             setSearchText(savedQuery);
         }
     }, []);
-
 
     // Suggesties ophalen zodra de zoekterm verandert
     useEffect(() => {
@@ -66,9 +66,19 @@ function Search() {
                         {suggestions.map((item) => (
                             <li key={item.id}>
                                 <img
-                                    src={`https://spoonacular.com/recipeImages/${item.id}-90x90.${item.imageType}`}
+                                    src={`https://spoonacular.com/recipeImages/${item.id}-636x393.${item.imageType}`}
                                     alt={item.title}
-                                    style={{ width: '80px', height: '80px', marginRight: '10px' }}
+                                    className="recept-afbeelding"
+                                />
+
+                                <FavoriteButton
+                                    recipe={{
+                                        id: item.id,
+                                        title: item.title,
+                                        image: `https://spoonacular.com/recipeImages/${item.id}-90x90.${item.imageType}`,
+                                        cuisines: [],
+                                        diets: []
+                                    }}
                                 />
                                 <Link to={`/app/recept/${item.id}`}>{item.title}</Link>
                             </li>
