@@ -1,0 +1,37 @@
+.details-wrapper {
+    max-width: 800px;
+    margin: 2rem auto;
+    padding: 1rem;
+}
+
+.details-card {
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+}
+
+.details-image {
+    width: 100%;
+    border-radius: 6px;
+    object-fit: cover;
+    margin-bottom: 1rem;
+}
+
+.details-title {
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+.details-subtitle {
+    font-size: 1.3rem;
+    margin-bottom: 1rem;
+}
+
+.details-description {
+    font-size: 1rem;
+    line-height: 1.6;
+}

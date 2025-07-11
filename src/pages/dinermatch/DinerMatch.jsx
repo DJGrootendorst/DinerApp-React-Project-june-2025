@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import Layout from '../../components/layout/Layout.jsx';
-import FavoriteButton from '../../components/favoritebutton/FavoriteButton.jsx';
 import RecipeSelection from '../../components/recipeselection/RecipeSelection.jsx';
-import { Link, useSearchParams } from 'react-router-dom';
+import Card from '../../components/card/Card.jsx';
+import { useSearchParams } from 'react-router-dom';
 import './DinerMatch.css';
 
 function DinerMatch() {
@@ -48,19 +48,10 @@ function DinerMatch() {
                 <div className="recepten-lijst">
                     {recipes.length > 0 ? (
                         recipes.map((recipe) => (
-                            <div key={recipe.id} className="recept-kaart">
-                                <img
-                                    src={recipe.image}
-                                    alt={recipe.title}
-                                    className="recept-afbeelding"
-                                />
-                                <h3>{recipe.title}</h3>
-                                <FavoriteButton recipe={recipe} />
-                                <Link to={`/app/recept/${recipe.id}`}>Bekijk recept</Link>
-                            </div>
+                            <Card key={recipe.id} recipe={recipe}/>
                         ))
                     ) : (
-                        <p>Vul de vragen in en klik op zoeken.</p>
+                        <p>Geef antwoord op de vragen en klik op 'Zoek recepten'.</p>
                     )}
                 </div>
             </div>

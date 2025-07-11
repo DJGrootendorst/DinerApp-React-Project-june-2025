@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import './FavoriteButton.css';
 import { useNavigate } from 'react-router-dom';
 
 function FavoriteButton({ recipe, onToggle, navigateBackOnRemove = false }) {
@@ -49,8 +50,8 @@ function FavoriteButton({ recipe, onToggle, navigateBackOnRemove = false }) {
     };
 
     return (
-        <button onClick={toggleFavorite}>
-            {favorite ? '❤️ Verwijder uit favorieten' : '🤍 Voeg toe aan favorieten'}
+        <button onClick={toggleFavorite} className="favorite-button">
+            {favorite ? '❤️' : '🤍'}
         </button>
     );
 }

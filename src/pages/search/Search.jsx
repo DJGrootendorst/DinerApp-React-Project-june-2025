@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Layout from '../../components/layout/Layout.jsx';
-import FavoriteButton from '../../components/favoritebutton/FavoriteButton.jsx';
-import { Link, useSearchParams } from 'react-router-dom';
+import Card from '../../components/card/Card.jsx';
+import { useSearchParams } from 'react-router-dom';
 import axios from 'axios';
 
 const API_KEY = 'aac25b9051c945c6ac35df61975b9dbf';
@@ -62,28 +62,19 @@ function Search() {
                 />
 
                 {suggestions.length > 0 && (
-                    <ul>
-                        {suggestions.map((item) => (
-                            <li key={item.id}>
-                                <img
-                                    src={`https://spoonacular.com/recipeImages/${item.id}-636x393.${item.imageType}`}
-                                    alt={item.title}
-                                    className="recept-afbeelding"
-                                />
+                    <div className="recepten-lijst">
+                        {suggestions.map((item) => {
+                            const recipe = {
+                                id: item.id,
+                                title: item.title,
+                                image: `https://spoonacular.com/recipeImages/${item.id}-636x393.${item.imageType}`,
+                                cuisines: [],
+                                diets: [],
+                            };
 
-                                <FavoriteButton
-                                    recipe={{
-                                        id: item.id,
-                                        title: item.title,
-                                        image: `https://spoonacular.com/recipeImages/${item.id}-90x90.${item.imageType}`,
-                                        cuisines: [],
-                                        diets: []
-                                    }}
-                                />
-                                <Link to={`/app/recept/${item.id}`}>{item.title}</Link>
-                            </li>
-                        ))}
-                    </ul>
+                            return <Card key={item.id} recipe={recipe}/>;
+                        })}
+                    </div>
                 )}
             </div>
         </Layout>
