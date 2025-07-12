@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Layout from '../../components/layout/Layout.jsx';
 import Card from '../../components/card/Card.jsx';
+import './Search.css';
 import { useSearchParams } from 'react-router-dom';
 import axios from 'axios';
 
@@ -48,18 +49,17 @@ function Search() {
 
     return (
         <Layout>
-            <div>
-                <h1>DinerApp Zoeken</h1>
-                <p>Zoek gericht naar de beste recepten.</p>
+            <div className="search-container">
+                <div className="search-box">
+                    <input
+                        type="text"
+                        id="search"
+                        value={searchText}
+                        onChange={(e) => setSearchText(e.target.value)}
+                        placeholder="Typ een receptnaam of ingrediënt."
+                    />
+                </div>
 
-                <label htmlFor="search">Search recipe:</label>
-                <input
-                    type="text"
-                    id="search"
-                    value={searchText}
-                    onChange={(e) => setSearchText(e.target.value)}
-                    placeholder="Typ een receptnaam..."
-                />
 
                 {suggestions.length > 0 && (
                     <div className="recepten-lijst">

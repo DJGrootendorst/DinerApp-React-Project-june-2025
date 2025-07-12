@@ -3,7 +3,6 @@ import { Link, useNavigate } from 'react-router-dom';
 import Layout from '../../components/layout/Layout.jsx';
 import Button from '../../components/button/Button.jsx';
 import './Register.css';
-import axios from 'axios';
 import { AuthContext } from '../../context/AuthContext.jsx';
 
 function Register() {
@@ -94,7 +93,7 @@ function Register() {
                                 onChange={handleChange}
                                 required
                             />
-                            <br/>
+
                             <Button
                                 text="Registreren"
                                 buttonClass="button-register"

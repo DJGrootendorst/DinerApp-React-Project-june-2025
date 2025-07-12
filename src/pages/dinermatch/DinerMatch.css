@@ -1,3 +1,19 @@
-.test{
+.dinermatch-container {
     display: flex;
+    gap: 2rem;
+    align-items: flex-start;
+}
+
+/* Zorg dat RecipeSelection niet te breed wordt */
+.dinermatch-container > *:first-child {
+    flex: 0 0 220px; /* of pas dit aan naar jouw gewenste breedte */
+}
+
+/* Laat receptenlijst de resterende ruimte gebruiken en wrappen */
+.recepten-lijst {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    justify-content: flex-start;
+    flex: 1;
 }

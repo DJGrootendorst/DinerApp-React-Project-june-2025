@@ -1,17 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './RecipeSelection.css';
+import Button from '../../components/button/Button.jsx';
 
 const API_KEY = 'aac25b9051c945c6ac35df61975b9dbf';
 
 const questions = [
     {
-        question: "Welk type keuken wilt u koken?",
+        question: "Welk type keuken?",
         param: "cuisine",
         opties: ["Italian", "Greek", "Mexican", "Chinese", "Japanese", "Indian", "American", "French"]
     },
     {
-        question: "Welk type keuken wilt u niet?",
+        question: "Welk type keuken niet?",
         param: "excludeCuisine",
         opties: ["Italian", "Greek", "Mexican", "Chinese", "Japanese", "Indian", "American", "French"]
     },
@@ -21,12 +22,12 @@ const questions = [
         opties: ["Gluten Free", "Ketogenic", "Vegetarian", "Vegan", "Pescetarian", "Paleo"]
     },
     {
-        question: "Met welke intoleranties wilt u rekening houden?",
+        question: "Zijn er intoleranties?",
         param: "intolerances",
         opties: ["Dairy", "Egg", "Gluten", "Grain", "Peanut", "Seafood"]
     },
     {
-        question: "Welk type gerecht wilt u bereiden?",
+        question: "Welk type gerecht?",
         param: "type",
         opties: ["Main Course", "Side Dish", "Dessert", "Appetizer", "Bread", "Soup", "Snack"]
     }
@@ -177,9 +178,12 @@ const RecipeSelection = ({ introText, onResults, searchParams, setSearchParams, 
                 ))}
             </form>
 
-            <button onClick={handleSearch} disabled={loading}>
-                {loading ? "Zoeken..." : "Zoek recepten"}
-            </button>
+            <Button
+                text={loading ? "Zoeken..." : "Recepten"}
+                buttonClass="button-login"
+                onClick={handleSearch}
+                disabled={loading}
+            />
         </div>
     );
 };

@@ -16,5 +16,13 @@
 
 /* Stijl voor inloggen knop */
 .button-login {
+    margin-top: 0.5rem;
     background-color: var(--jade);
 }
+
+/* Stijl voor uitloggen knop */
+.button-logout {
+    background-color: #FE5E41;
+}
+
+

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Layout from '../../components/layout/Layout.jsx';
+import './MyRecipes.css';
 import Card from '../../components/card/Card.jsx';
 
 function MyRecipes() {
@@ -15,10 +16,6 @@ function MyRecipes() {
 
     return (
         <Layout>
-            <div className="dinermatch-container">
-                <h2>Mijn favoriete recepten</h2>
-            </div>
-
             {favorites.length === 0 ? (
                 <p>Voeg eerst favoriete recepten toe bij DinerMatch of bij Zoeken.</p>
             ) : (

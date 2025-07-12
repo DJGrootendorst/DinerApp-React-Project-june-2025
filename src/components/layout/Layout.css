@@ -89,13 +89,10 @@ p a {
 }
 
 .layout-main {
-    display: flex;
-    flex-direction: row;
     flex-grow: 1;
     padding: 2rem;
     background-color: #f1f1f1;
     overflow-x: hidden;
-
 }
 
 .layout-footer {

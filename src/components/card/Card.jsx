@@ -7,16 +7,21 @@ function Card({ recipe, onToggleFavorite }) {
     const { id, title, image } = recipe;
 
     return (
-        <article className="card">
-            <Link to={`/app/recept/${id}`} className="card-link-wrapper">
-                <div className="image-wrapper">
+        <article className="card-container">
+            <div className="image-wrapper">
+                <Link to={`/app/recept/${id}`}>
                     <img src={image} alt={title} className="card-image"/>
-                </div>
-                <h3 className="card-title">{title}</h3>
-            </Link>
+                </Link>
+            </div>
 
-            <FavoriteButton recipe={recipe} onToggle={onToggleFavorite}/>
+            <div className="card-bottom-row">
+                <Link to={`/app/recept/${id}`} className="card-title-link">
+                    <h3 className="card-title">{title}</h3>
+                </Link>
+                <FavoriteButton recipe={recipe} onToggle={onToggleFavorite}/>
+            </div>
         </article>
+
     );
 }
 

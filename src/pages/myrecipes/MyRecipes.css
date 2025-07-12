@@ -1,7 +1,10 @@
 .recepten-lijst {
     display: flex;
-    flex-direction: row;
     flex-wrap: wrap;
     gap: 1.5rem;                   /* Ruimte tussen de cards */
-    justify-content: flex-start;  /* Of center, als je ze wilt centreren */
+    justify-content: center;  /* Of center, als je ze wilt centreren */
+    max-width: 1200px;
+    margin: 0 auto;
+    width: 100%;
+    min-height: 100px;
 }

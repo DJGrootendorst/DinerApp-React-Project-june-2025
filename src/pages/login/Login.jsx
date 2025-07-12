@@ -45,7 +45,7 @@ function Login() {
                             <input
                                 type="text"
                                 name="username"
-                                placeholder="Username"
+                                placeholder="Gebruikersnaam"
                                 value={formState.username}
                                 onChange={handleChange}
                                 required
@@ -58,7 +58,6 @@ function Login() {
                                 onChange={handleChange}
                                 required
                             />
-                            <br />
                             <Button
                                 text="Inloggen"
                                 buttonClass="button-login"

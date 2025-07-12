@@ -5,6 +5,7 @@
     width: 20%;
     border-radius: 0.5rem;
     padding: 20px;
+    color: #033d1b
 }
 
 .recipe-selection-form {
@@ -17,6 +18,7 @@
     border: none;
     border-radius: 6px;
     padding: 10px;
+    background-color: rgba(255, 255, 255, 0.2);
 }
 
 .vraag-titel {
@@ -31,6 +33,7 @@
 }
 
 .dropdown-pijl {
+    color: #F3C178;
     cursor: pointer;
     user-select: none;
 }
@@ -45,4 +48,49 @@
 .checkbox-label {
     margin: 5px 0;
     font-size: 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+/* Custom Checkbox Styling */
+.checkbox-label input[type="checkbox"] {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    width: 18px;
+    height: 18px;
+    border: 2px solid #088c45; /* Donkergroen randje */
+    border-radius: 4px;
+    background-color: #028842; /* Donkergroene achtergrond */
+    position: relative;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.checkbox-label input[type="checkbox"]:checked {
+    background-color: #81f495; /* Lichtgroen als vinkje */
+    border-color: #81f495;
+}
+
+.checkbox-label input[type="checkbox"]::after {
+    content: "";
+    position: absolute;
+    top: 2px;
+    left: 5px;
+    width: 4px;
+    height: 9px;
+    border: solid #033d1b; /* Donkergroen vinkje */
+    border-width: 0 2px 2px 0;
+    opacity: 0;
+    transform: rotate(45deg);
+}
+
+.checkbox-label input[type="checkbox"]:checked::after {
+    opacity: 1;
+}
+
+/* Optional: Hover/focus effect */
+.checkbox-label input[type="checkbox"]:hover {
+    filter: brightness(1.1);
 }
