@@ -57,3 +57,7 @@ function FavoriteButton({ recipe, onToggle, navigateBackOnRemove = false }) {
 }
 
 export default FavoriteButton;
+
+
+
+

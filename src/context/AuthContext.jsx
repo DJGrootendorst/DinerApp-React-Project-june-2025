@@ -5,8 +5,8 @@ import axios from 'axios';
 
 export const AuthContext = createContext({});
 
-const API_BASE_URL = 'https://api.datavortex.nl/dinerappfrontend';
-const API_KEY = 'dinerappfrontend:k3YQ5XfjlcqYE6FjnzQO';
+const API_BASE_URL = import.meta.env.VITE_NOVI_BASE_URL;
+const API_KEY = import.meta.env.VITE_NOVI_API_KEY;
 
 function AuthContextProvider({ children }) {
     const [isAuth, toggleIsAuth] = useState({

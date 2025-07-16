@@ -12,33 +12,14 @@ De belangrijkste kernfunctionaliteiten van deze applicatie zijn:
 1. Registreren en inloggen met authenticatie; 
 2. De applicatie stelt (op basis van antwoorden op vragen) passende recepten voor;
 3. Met behulp van een geavanceerde zoekfunctie kan de gebruiker door alle beschikbare recepten browsen en op zoek gaan naar specifieke recepten; 
-4. De gebruiker kan favoriete recepten selecteren en opslaan. Zodat de gebruiker kan terugkeren bij 'Mijn recepten' om de favoriete recepten te gebruiken.
+4. De gebruiker kan favoriete recepten selecteren en opslaan. Zodat de gebruiker kan terugkeren bij 'Mijn recepten' om de favoriete recepten te zien.
 
 ![Screenshot van de applicatie](./src/assets/screenshot.png)
 
 
-# Installatiehandleiding
-
-Deze Frontend Development Applicatie **DinerApp** is gebouwd met **HTML & CSS**, **JavaScript**, en **React**. De code is geprogrammeerd in **WebStorm**.
-
-**DinerApp** helpt mensen met het maken van receptkeuzes. Zodra de gebruiker is ingelogd, kan de gebruiker de applicatie gebruiken. Na het beantwoorden van vragen over onder andere kooktijd en dieetwensen stelt de applicatie passende recepten voor.
-
-De belangrijkste kernfunctionaliteiten van deze applicatie zijn:
-
-1. Registreren en inloggen met authenticatie;
-2. De applicatie stelt (op basis van antwoorden op vragen) passende recepten voor;
-3. Met behulp van een geavanceerde zoekfunctie kan de gebruiker door alle beschikbare recepten browsen en op zoek gaan naar specifieke recepten;
-4. De gebruiker kan favoriete recepten selecteren en opslaan, zodat de gebruiker kan terugkeren bij 'Mijn recepten' om de favoriete recepten te gebruiken.
-
 ---
 
-## Hoofdstuk 1: Inleiding van de functionaliteit van de applicatie
-
-DinerApp is een recept-aanbevelingsapplicatie die gebruikers helpt bij het vinden van geschikte recepten op basis van hun voorkeuren en dieetwensen. Na inloggen kan de gebruiker verschillende vragen beantwoorden over kooktijd, dieetwensen, en voorkeuren. Op basis van deze antwoorden stelt de applicatie een lijst met recepten voor. Gebruikers kunnen ook favoriete recepten opslaan en later raadplegen in hun persoonlijke overzicht.
-
----
-
-## Hoofdstuk 2: Benodigdheden
+## Hoofdstuk 1: Benodigdheden
 
 Om de applicatie succesvol te draaien, zijn de volgende benodigdheden noodzakelijk:
 
@@ -47,14 +28,28 @@ Om de applicatie succesvol te draaien, zijn de volgende benodigdheden noodzakeli
 - **npm**: De package manager die automatisch wordt geïnstalleerd met Node.js.
 
 ### API en andere externe afhankelijkheden:
-- **Geen API vereist in de eerste versie**: Voor nu gebruikt de applicatie alleen lokale state via `useState` voor het inloggen. Later wordt er een API toegevoegd voor authenticatie en data-analyse.
+- ## 🔑 API keys (.env)
 
-### Externe services:
-- Geen externe backend of API-sleutels vereist in deze eerste versie van de applicatie.
+Om deze applicatie correct te laten draaien, zijn er API keys nodig voor:
+
+- De Spoonacular API (voor recepten)
+- De NOVI Backend API (voor authenticatie en gebruikersdata)
+
+Je hoeft deze keys **niet zelf aan te maken**. In de ZIP die je hebt ontvangen, zit een `.env` bestand met de benodigde sleutels. Zet dit bestand in de hoofdmap van het project, naast `package.json`.
+
+### Registeren en inloggen:
+- Om de applicatie te gebruiken opent u de applicatie in uw browser. 
+- Vervolgens gaat u naar de button 'registreren' om een account aan te maken. 
+- Klik op de button 'registreren' onderaan het formulier. 
+- U kunt vervolgens inloggen met uw account.
+- Als backup kunt u altijd gebruik maken van mijn testaccount:
+- Gebruikersnaam: djguser
+- E-mailadres: djguser@test.nl
+- Wachtwoord: BanaanEnAppel123!
 
 ---
 
-## Hoofdstuk 3: Stappenplan
+## Hoofdstuk 2: Stappenplan
 
 Volg de onderstaande stappen om de applicatie te installeren en lokaal te draaien:
 
@@ -73,13 +68,13 @@ Volg de onderstaande stappen om de applicatie te installeren en lokaal te draaie
 4. **Bekijk de applicatie**: De applicatie zal draaien op http://localhost:5173/. 
 Klik op de link die in de terminal verschijnt om de applicatie in de browser te openen. 
 
-## Hoofdstuk 4: Inloggen
+## Hoofdstuk 3: Inloggen
 
 In deze eerste versie van de applicatie is er **geen echte authenticatie** geïmplementeerd.
 Gebruikers kunnen eenvoudig inloggen door in de applicatie op de button **inloggen** te klikken. 
 Zodra dit systeem in de toekomst wordt uitgebreid, zal er een werkelijke API voor authenticatie beschikbaar zijn. 
 
-## Hoofdstuk 5: Npm commando's
+## Hoofdstuk 4: Npm commando's
 
 Hier zijn enkele npm commando's die beschikbaar zijn binnen dit project en waarvoor ze dienen: 
 

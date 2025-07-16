@@ -5,7 +5,7 @@ import './Search.css';
 import { useSearchParams } from 'react-router-dom';
 import axios from 'axios';
 
-const API_KEY = 'aac25b9051c945c6ac35df61975b9dbf';
+const API_KEY = import.meta.env.VITE_SPOONACULAR_API_KEY;
 
 function Search() {
     const [searchText, setSearchText] = useState('');

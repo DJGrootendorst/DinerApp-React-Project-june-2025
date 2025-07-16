@@ -3,7 +3,7 @@ import axios from 'axios';
 import './RecipeSelection.css';
 import Button from '../../components/button/Button.jsx';
 
-const API_KEY = 'aac25b9051c945c6ac35df61975b9dbf';
+const API_KEY = import.meta.env.VITE_SPOONACULAR_API_KEY;
 
 const questions = [
     {

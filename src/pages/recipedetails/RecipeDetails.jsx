@@ -4,7 +4,7 @@ import Layout from '../../components/layout/Layout.jsx';
 import RecipeDetailsCard from '../../components/card/RecipeDetailsCard.jsx';
 import axios from 'axios';
 
-const API_KEY = 'aac25b9051c945c6ac35df61975b9dbf';
+const API_KEY = import.meta.env.VITE_SPOONACULAR_API_KEY;
 
 function RecipeDetails() {
     const { id } = useParams();
